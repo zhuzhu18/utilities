@@ -1,3 +1,5 @@
+import io
+from PIL import Image
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -32,4 +34,11 @@ plt.xlim(0, 1)
 plt.ylim(0, 1)
 plt.plot(fprs, tprs, linewidth=2, color='red')
 plt.fill_between(fprs, tprs, interpolate=True, color='green', alpha=0.5)
-plt.show()
+
+buff = io.BytesIO()
+plt.savefig(buff, format='jpeg')
+buff.seek(0)
+plt.close()
+
+image = Image.open(buff)
+image.show()
