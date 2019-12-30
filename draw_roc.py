@@ -27,6 +27,8 @@ for idx, threshold in enumerate(thresholds):
     tprs[idx], fprs[idx], accs[idx] = caculate_roc(thresholds[idx], dist, groundtruth)
 plt.xlabel('false positive rate')
 plt.ylabel('true positive rate')
+plt.xlim(0, 1)
+plt.ylim(0, 1)
 plt.plot(fprs, tprs, color='red')
 plt.fill_between(fprs, tprs, interpolate=True, color='green', alpha=0.5)
 plt.show()
